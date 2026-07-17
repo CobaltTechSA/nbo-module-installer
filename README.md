@@ -31,7 +31,7 @@ It creates the basic backend and frontend scaffolding required for a module to i
 If the installer repository is private, first register the repository in Composer:
 
 ```bash
-composer global config repositories.nbo-installer vcs git@github.com:neopayment/nbo-installer.git
+composer global config repositories.nbo-installer vcs git@github.com:CobaltTechSA/nbo-installer.git
 ```
 Then install it globally:
 
@@ -192,7 +192,7 @@ The generated composer.json includes:
                   "resources/css/customers.css"
               ]
           }
-      },
+      }
     }
   },
   "minimum-stability": "stable",
