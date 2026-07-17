@@ -33,7 +33,7 @@
                   "resources/css/{{MODULE_CODE}}.css"
               ]
           }
-      },
+      }
     }
   },
   "minimum-stability": "stable",
