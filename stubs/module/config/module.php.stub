@@ -11,7 +11,7 @@ return [
     |
     */
 
-    'enabled' => env('{{MODULE_STUDLY}}_MODULE_ENABLED', true),
+    'enabled' => env('NBO_{{MODULE_UPPER}}_MODULE_ENABLED', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -35,5 +35,5 @@ return [
     |--------------------------------------------------------------------------
     */
 
-    'api_prefix' => 'api/nbo/{{MODULE_CODE}}',
+    'api_prefix' => 'api/{{MODULE_CODE}}',
 ];

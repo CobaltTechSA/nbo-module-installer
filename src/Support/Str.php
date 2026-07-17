@@ -53,4 +53,15 @@ class Str
     {
         return trim(ucwords(str_replace(['-', '_'], ' ', $value)));
     }
+
+    /**
+     * Converts a given string to uppercase.
+     *
+     * @param string $value The input string to be converted to uppercase.
+     * @return string The converted uppercase string.
+     */
+    public static function upper(string $value): string
+    {
+        return strtoupper($value);
+    }
 }

@@ -17,6 +17,7 @@ class NewModuleCommand extends Command
     protected function configure(): void
     {
         $this
+            ->setName(self::$defaultName)
             ->setDescription('Create a new NBO module')
             ->addArgument('code', InputArgument::REQUIRED, 'Module code, example: customers')
             ->addOption('name', null, InputOption::VALUE_OPTIONAL, 'Display name')
@@ -35,6 +36,7 @@ class NewModuleCommand extends Command
         $code = Str::kebab((string) $input->getArgument('code'));
         $snake = Str::snake($code);
         $studly = Str::studly($code);
+        $upper = Str::upper($code);
         $displayName = $input->getOption('name') ?: Str::title($code);
 
         $composerVendor = Str::kebab((string) $input->getOption('composer-vendor'));
@@ -64,6 +66,7 @@ class NewModuleCommand extends Command
             '{{MODULE_CODE}}' => $code,
             '{{MODULE_SNAKE}}' => $snake,
             '{{MODULE_STUDLY}}' => $studly,
+            '{{MODULE_UPPER}}' => $upper,
             '{{MODULE_NAME}}' => $displayName,
 
             '{{COMPOSER_VENDOR}}' => $composerVendor,
