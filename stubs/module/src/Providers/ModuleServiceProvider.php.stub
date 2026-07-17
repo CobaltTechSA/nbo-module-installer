@@ -4,7 +4,6 @@ namespace {{PHP_NAMESPACE}}\Providers;
 
 use NeoPayment\Core\Providers\NBOModuleServiceProvider;
 use Spatie\LaravelPackageTools\Package;
-use Spatie\LaravelPackageTools\PackageServiceProvider;
 
 class {{SERVICE_PROVIDER_CLASS}} extends NBOModuleServiceProvider
 {
