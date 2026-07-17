@@ -1,0 +1,9 @@
+import path from "node:path";
+import {Aliases} from '@neopayment/nbo-core/';
+
+
+const moduleAliases: Aliases = {
+    '@nbo-{{MODULE_CODE}}': path.resolve(__dirname, 'resources/ts')
+};
+
+export default moduleAliases;
