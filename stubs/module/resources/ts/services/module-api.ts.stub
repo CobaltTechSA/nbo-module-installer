@@ -1,0 +1,45 @@
+export type ModuleItem = {
+    id: string | number;
+    name?: string;
+    [key: string]: unknown;
+};
+
+export type ModuleIndexResponse = {
+    module: string;
+    items: ModuleItem[];
+};
+
+export type ModuleShowResponse = {
+    module: string;
+    item: ModuleItem;
+};
+
+export default class ModuleApi {
+    static async index(): Promise<ModuleIndexResponse> {
+        const response = await fetch('/api/nbo/{{MODULE_CODE}}', {
+            headers: {
+                Accept: 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error loading {{MODULE_NAME}}');
+        }
+
+        return response.json();
+    }
+
+    static async show(id: string | number): Promise<ModuleShowResponse> {
+        const response = await fetch(`/api/nbo/{{MODULE_CODE}}/${id}`, {
+            headers: {
+                Accept: 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Error loading {{MODULE_NAME}} detail');
+        }
+
+        return response.json();
+    }
+}

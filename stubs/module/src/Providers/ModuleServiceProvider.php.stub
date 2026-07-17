@@ -1,0 +1,21 @@
+<?php
+
+namespace {{PHP_NAMESPACE}};
+
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
+
+class {{SERVICE_PROVIDER_CLASS}} extends PackageServiceProvider
+{
+    public function configurePackage(Package $package): void
+    {
+        $package
+            ->name('nbo-{{MODULE_CODE}}')
+            ->hasConfigFile('nbo-{{MODULE_CODE}}')
+            ->hasViews()
+            ->hasRoute('web')
+            ->hasRoute('api')
+            ->discoversMigrations()
+            ->runsMigrations();
+    }
+}

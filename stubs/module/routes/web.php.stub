@@ -1,0 +1,15 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+
+Route::middleware(['web'])
+    ->prefix('nbo/{{MODULE_CODE}}')
+    ->name('nbo.{{MODULE_CODE}}.')
+    ->group(function (): void {
+        //
+        // Define web routes for this module if needed.
+        //
+        // Most NBO modules should expose their UI through Vue routes
+        // registered in resources/ts/register.ts.
+        //
+    });

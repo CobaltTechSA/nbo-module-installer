@@ -1,0 +1,5 @@
+<template>
+  <section class="{{MODULE_CODE}}-create-page">
+    <h1>Create {{MODULE_NAME}}</h1>
+  </section>
+</template>

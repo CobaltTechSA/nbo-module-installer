@@ -1,0 +1,16 @@
+.{{MODULE_CODE}}-page {
+    min-height: 100%;
+}
+
+.{{MODULE_CODE}}-page__title {
+    margin-bottom: 1rem;
+}
+
+.{{MODULE_CODE}}-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    padding: 0.15rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}

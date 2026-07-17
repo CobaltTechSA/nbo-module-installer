@@ -1,0 +1,31 @@
+{
+  "name": "{{COMPOSER_PACKAGE}}",
+  "description": "{{MODULE_NAME}} module for NBO",
+  "type": "library",
+  "license": "proprietary",
+  "require": {
+    "php": "^8.3",
+    "neopayment/nbo-core": "^1.0",
+    "spatie/laravel-package-tools": "^1.16"
+  },
+  "autoload": {
+    "psr-4": {
+      "{{PHP_NAMESPACE_JSON}}\\": "src/",
+      "{{PHP_NAMESPACE_JSON}}\\Database\\Seeders\\": "database/seeders/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "{{PHP_NAMESPACE_JSON}}\\{{SERVICE_PROVIDER_CLASS}}"
+      ]
+    },
+    "nbo-module": {
+      "code": "{{MODULE_CODE}}",
+      "name": "{{MODULE_NAME}}",
+      "seeder": "{{PHP_NAMESPACE_JSON}}\\Database\\Seeders\\{{SEEDER_CLASS}}"
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

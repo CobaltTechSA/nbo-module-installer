@@ -1,0 +1,24 @@
+<?php
+
+namespace {{PHP_NAMESPACE}}\Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class {{SEEDER_CLASS}} extends Seeder
+{
+    public function run(): void
+    {
+        DB::table('nbo_modules')->updateOrInsert(
+            [
+                'code' => '{{MODULE_CODE}}',
+            ],
+            [
+                'name' => '{{MODULE_NAME}}',
+                'enabled' => true,
+                'updated_at' => now(),
+                'created_at' => now(),
+            ]
+        );
+    }
+}

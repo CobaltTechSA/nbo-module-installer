@@ -1,0 +1,39 @@
+export type ModuleState = {
+    selectedId: string | number | null;
+    loading: boolean;
+};
+
+const storeModule = {
+    namespaced: true,
+
+    state: (): ModuleState => ({
+        selectedId: null,
+        loading: false,
+    }),
+
+    mutations: {
+        setSelectedId(state: ModuleState, id: string | number | null): void {
+            state.selectedId = id;
+        },
+
+        setLoading(state: ModuleState, loading: boolean): void {
+            state.loading = loading;
+        },
+    },
+
+    actions: {
+        select({ commit }: any, id: string | number): void {
+            commit('setSelectedId', id);
+        },
+
+        startLoading({ commit }: any): void {
+            commit('setLoading', true);
+        },
+
+        stopLoading({ commit }: any): void {
+            commit('setLoading', false);
+        },
+    },
+};
+
+export default storeModule;

@@ -1,0 +1,28 @@
+<?php
+
+namespace {{PHP_NAMESPACE}}\Http\Controllers;
+
+use Illuminate\Http\JsonResponse;
+use Illuminate\Routing\Controller;
+
+class ModuleController extends Controller
+{
+    public function index(): JsonResponse
+    {
+        return response()->json([
+            'module' => '{{MODULE_CODE}}',
+            'items' => [],
+        ]);
+    }
+
+    public function show(int|string $id): JsonResponse
+    {
+        return response()->json([
+            'module' => '{{MODULE_CODE}}',
+            'item' => [
+                'id' => $id,
+                'name' => '{{MODULE_NAME}} item '.$id,
+            ],
+        ]);
+    }
+}

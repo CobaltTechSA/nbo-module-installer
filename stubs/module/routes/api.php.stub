@@ -1,0 +1,12 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use {{PHP_NAMESPACE}}\Http\Controllers\ModuleController;
+
+Route::middleware(['api'])
+    ->prefix(config('module.api_prefix', 'api/nbo/{{MODULE_CODE}}'))
+    ->name('api.nbo.{{MODULE_CODE}}.')
+    ->group(function (): void {
+        Route::get('/', [ModuleController::class, 'index'])->name('index');
+        Route::get('/{id}', [ModuleController::class, 'show'])->name('show');
+    });

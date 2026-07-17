@@ -1,0 +1,12 @@
+<script setup lang="ts">
+defineProps<{
+  id: string | number;
+}>();
+</script>
+
+<template>
+  <section class="{{MODULE_CODE}}-show-page">
+    <h1>{{MODULE_NAME}} Detail</h1>
+    <p>ID: {{ id }}</p>
+  </section>
+</template>

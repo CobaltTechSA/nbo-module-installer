@@ -1,0 +1,22 @@
+import type { NboFrontendModule } from '@neopayment/nbo-core';
+
+import routes from './routes';
+import storeModule from './store';
+
+import '../css/module.css';
+
+const module: NboFrontendModule = {
+    code: '{{MODULE_CODE}}',
+
+    async register({ router, store }) {
+        if (!store.hasModule('{{MODULE_CODE}}')) {
+            store.registerModule('{{MODULE_CODE}}', storeModule);
+        }
+
+        for (const route of routes) {
+            router.addRoute('nbo.shell', route);
+        }
+    },
+};
+
+export default module;

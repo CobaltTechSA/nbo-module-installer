@@ -1,0 +1,21 @@
+{
+  "name": "neopayment/nbo-installer",
+  "description": "NBO module installer",
+  "type": "library",
+  "license": "proprietary",
+  "require": {
+    "php": "^8.3",
+    "symfony/console": "^7.0",
+    "symfony/filesystem": "^7.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Neopayment\\NboInstaller\\": "src/"
+    }
+  },
+  "bin": [
+    "bin/nbo"
+  ],
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

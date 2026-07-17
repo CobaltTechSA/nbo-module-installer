@@ -1,0 +1,59 @@
+# {{MODULE_NAME}}
+
+NBO module: `{{MODULE_CODE}}`
+
+## Composer package
+
+```bash
+composer require {{COMPOSER_PACKAGE}}
+```
+
+## NPM package
+
+```json
+{
+  "name": "{{NPM_PACKAGE}}"
+}
+```
+
+## Frontend entry
+
+This module exposes its frontend registration file through:
+
+```ts
+import('{{NPM_PACKAGE}}/register')
+```
+
+## Module metadata
+
+```json
+{
+  "nbo": {
+    "type": "module",
+    "code": "{{MODULE_CODE}}",
+    "name": "{{MODULE_NAME}}",
+    "frontend": {
+      "register": "./register"
+    }
+  }
+}
+```
+
+## Development
+
+```bash
+composer install
+composer dump-autoload
+npm install
+```
+
+## Integration in nbo-demo
+
+```bash
+composer require {{COMPOSER_PACKAGE}}
+npm install
+php artisan optimize:clear
+php artisan migrate
+php artisan db:seed
+npm run dev
+```
