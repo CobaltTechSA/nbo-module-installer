@@ -1,5 +1,5 @@
 import path from "node:path";
-import {Aliases} from '@neopayment/nbo-core/';
+import {Aliases} from '@neopayment/nbo-core';
 
 
 const moduleAliases: Aliases = {
