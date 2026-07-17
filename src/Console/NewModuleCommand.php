@@ -92,7 +92,7 @@ class NewModuleCommand extends Command
 
         $this->copyStubDirectory($stubPath, $targetPath, $replacements, $filesystem);
 
-        $this->renameGeneratedFiles($targetPath, $code, $snake, $serviceProviderClass, $seederClass, $filesystem);
+        $this->renameGeneratedFiles($targetPath, $code, $snake, $studly, $serviceProviderClass, $seederClass, $filesystem);
 
         $output->writeln('');
         $output->writeln('<info>NBO module created successfully.</info>');
@@ -154,17 +154,20 @@ class NewModuleCommand extends Command
         string $targetPath,
         string $code,
         string $snake,
+        string $studly,
         string $serviceProviderClass,
         string $seederClass,
         Filesystem $filesystem
     ): void {
         $renames = [
+            "{$targetPath}/src/Http/Controllers/ModuleController.php" => "{$targetPath}/src/Http/Controllers/{$studly}Controller.php",
             "{$targetPath}/src/Providers/ModuleServiceProvider.php" => "{$targetPath}/src/Providers/{$serviceProviderClass}.php",
             "{$targetPath}/database/seeders/ModuleSeeder.php" => "{$targetPath}/database/seeders/{$seederClass}.php",
             "{$targetPath}/database/migrations/create_module_tables.php" => "{$targetPath}/database/migrations/create_{$snake}_module_tables.php",
             "{$targetPath}/config/module.php" => "{$targetPath}/config/$code.php",
             "{$targetPath}/resources/css/module.css" => "{$targetPath}/resources/css/$code.css",
             "{$targetPath}/resources/ts/services/module-api.ts" => "{$targetPath}/resources/ts/services/$code-api.ts",
+            "{$targetPath}/resources/ts/components/ModuleBadge.vue" => "{$targetPath}/resources/ts/components/{$studly}Badge.vue"
         ];
 
         foreach ($renames as $from => $to) {
