@@ -4,8 +4,9 @@ namespace {{PHP_NAMESPACE}}\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use NeoPayment\Core\Database\Seeders\BaseNboDatabaseSeeder;
 
-class {{SEEDER_CLASS}} extends Seeder
+class {{SEEDER_CLASS}} extends BaseNboDatabaseSeeder
 {
     public function run(): void
     {
