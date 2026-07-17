@@ -43,7 +43,7 @@ class NewModuleCommand extends Command
         $githubOrg = Str::kebab((string) $input->getOption('github-org'));
 
         $targetPath = $input->getOption('path')
-            ?: getcwd().DIRECTORY_SEPARATOR.'nbo-module-'.$code;
+            ?: getcwd().DIRECTORY_SEPARATOR.'nbo-'.$code;
 
         $targetPath = rtrim((string) $targetPath, DIRECTORY_SEPARATOR);
 
@@ -54,10 +54,10 @@ class NewModuleCommand extends Command
             return Command::FAILURE;
         }
 
-        $composerPackage = "{$composerVendor}/nbo-module-{$code}";
-        $npmPackage = rtrim($npmScope, '/')."/nbo-module-{$code}";
-        $phpNamespace = "{$phpRootNamespace}\\NboModule{$studly}";
-        $serviceProviderClass = "NboModule{$studly}ServiceProvider";
+        $composerPackage = "{$composerVendor}/nbo-{$code}";
+        $npmPackage = rtrim($npmScope, '/')."/nbo-{$code}";
+        $phpNamespace = "{$phpRootNamespace}\\Nbo{$studly}";
+        $serviceProviderClass = "Nbo{$studly}ServiceProvider";
         $seederClass = "{$studly}ModuleSeeder";
 
         $replacements = [
@@ -80,7 +80,7 @@ class NewModuleCommand extends Command
             '{{SEEDER_CLASS}}' => $seederClass,
 
             '{{GITHUB_ORG}}' => $githubOrg,
-            '{{GITHUB_REPOSITORY}}' => "nbo-module-{$code}",
+            '{{GITHUB_REPOSITORY}}' => "nbo-{$code}",
         ];
 
         $stubPath = dirname(__DIR__, 2).'/stubs/module';
