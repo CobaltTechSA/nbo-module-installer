@@ -1,4 +1,5 @@
 # NBO Installer
+![Packagist Version](https://img.shields.io/packagist/v/neopayment/nbo-installer?style=for-the-badge)
 
 NBO Installer is a CLI tool used to generate new NBO modules with a standard Laravel + Vue + Vite structure.
 
