@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue';
-import ModuleApi from '../services/ModuleApi';
+import {{MODULE_STUDLY}}Api from '../services/{{MODULE_STUDLY}}Api';
 
 const loading = ref(false);
 const items = ref<any[]>([]);
@@ -9,7 +9,7 @@ onMounted(async () => {
   loading.value = true;
 
   try {
-    const response = await ModuleApi.index();
+    const response = await {{MODULE_STUDLY}}Api.index();
     items.value = response.items ?? [];
   } finally {
     loading.value = false;

@@ -6,7 +6,7 @@
   "require": {
     "php": "^8.3",
     "neopayment/nbo-core": "^1.0",
-    "spatie/laravel-package-tools": "^1.16"
+    "spatie/laravel-package-tools": "^1.93"
   },
   "autoload": {
     "psr-4": {
@@ -14,16 +14,26 @@
       "{{PHP_NAMESPACE_JSON}}\\Database\\Seeders\\": "database/seeders/"
     }
   },
+  "classmap": [
+    "database/seeders"
+  ],
   "extra": {
     "laravel": {
       "providers": [
-        "{{PHP_NAMESPACE_JSON}}\\{{SERVICE_PROVIDER_CLASS}}"
+        "{{PHP_NAMESPACE_JSON}}\\Providers\\{{SERVICE_PROVIDER_CLASS}}"
       ]
     },
     "nbo-module": {
       "code": "{{MODULE_CODE}}",
       "name": "{{MODULE_NAME}}",
-      "seeder": "{{PHP_NAMESPACE_JSON}}\\Database\\Seeders\\{{SEEDER_CLASS}}"
+      "seeder": "{{PHP_NAMESPACE_JSON}}\\Database\\Seeders\\{{SEEDER_CLASS}}",
+      "vite": {
+          "laravel": {
+              "input": [
+                  "resources/css/{{MODULE_CODE}}.css"
+              ]
+          }
+      },
     }
   },
   "minimum-stability": "stable",

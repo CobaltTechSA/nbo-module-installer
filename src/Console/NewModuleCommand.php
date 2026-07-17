@@ -24,8 +24,8 @@ class NewModuleCommand extends Command
             ->addOption('path', null, InputOption::VALUE_OPTIONAL, 'Target path')
             ->addOption('composer-vendor', null, InputOption::VALUE_OPTIONAL, 'Composer vendor', 'neopayment')
             ->addOption('npm-scope', null, InputOption::VALUE_OPTIONAL, 'NPM scope', '@neopayment')
-            ->addOption('namespace', null, InputOption::VALUE_OPTIONAL, 'PHP root namespace', 'Neopayment')
-            ->addOption('github-org', null, InputOption::VALUE_OPTIONAL, 'GitHub organization', 'neopayment')
+            ->addOption('namespace', null, InputOption::VALUE_OPTIONAL, 'PHP root namespace', 'NeoPayment')
+            ->addOption('github-org', null, InputOption::VALUE_OPTIONAL, 'GitHub organization', 'CobaltTechSA')
             ->addOption('force', null, InputOption::VALUE_NONE, 'Overwrite existing files');
     }
 
@@ -36,7 +36,7 @@ class NewModuleCommand extends Command
         $code = Str::kebab((string) $input->getArgument('code'));
         $snake = Str::snake($code);
         $studly = Str::studly($code);
-        $upper = Str::upper($code);
+        $config = Str::upper($snake);
         $displayName = $input->getOption('name') ?: Str::title($code);
 
         $composerVendor = Str::kebab((string) $input->getOption('composer-vendor'));
@@ -58,7 +58,7 @@ class NewModuleCommand extends Command
 
         $composerPackage = "{$composerVendor}/nbo-{$code}";
         $npmPackage = rtrim($npmScope, '/')."/nbo-{$code}";
-        $phpNamespace = "{$phpRootNamespace}\\Nbo{$studly}";
+        $phpNamespace = "{$phpRootNamespace}\\{$studly}";
         $serviceProviderClass = "Nbo{$studly}ServiceProvider";
         $seederClass = "{$studly}ModuleSeeder";
 
@@ -66,7 +66,7 @@ class NewModuleCommand extends Command
             '{{MODULE_CODE}}' => $code,
             '{{MODULE_SNAKE}}' => $snake,
             '{{MODULE_STUDLY}}' => $studly,
-            '{{MODULE_UPPER}}' => $upper,
+            '{{MODULE_UPPER}}' => $config,
             '{{MODULE_NAME}}' => $displayName,
 
             '{{COMPOSER_VENDOR}}' => $composerVendor,
@@ -159,9 +159,12 @@ class NewModuleCommand extends Command
         Filesystem $filesystem
     ): void {
         $renames = [
-            "{$targetPath}/src/ModuleServiceProvider.php" => "{$targetPath}/src/{$serviceProviderClass}.php",
+            "{$targetPath}/src/Providers/ModuleServiceProvider.php" => "{$targetPath}/src/Providers/{$serviceProviderClass}.php",
             "{$targetPath}/database/seeders/ModuleSeeder.php" => "{$targetPath}/database/seeders/{$seederClass}.php",
             "{$targetPath}/database/migrations/create_module_tables.php" => "{$targetPath}/database/migrations/create_{$snake}_module_tables.php",
+            "{$targetPath}/config/module.php" => "{$targetPath}/config/$code.php",
+            "{$targetPath}/resources/css/module.css" => "{$targetPath}/resources/css/$code.css",
+            "{$targetPath}/resources/ts/services/module-api.ts" => "{$targetPath}/resources/ts/services/$code-api.ts",
         ];
 
         foreach ($renames as $from => $to) {

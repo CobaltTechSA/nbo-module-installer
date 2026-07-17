@@ -3,7 +3,7 @@ export type ModuleState = {
     loading: boolean;
 };
 
-const storeModule = {
+const storeModule{{MODULE_STUDLY}} = {
     namespaced: true,
 
     state: (): ModuleState => ({
@@ -36,4 +36,4 @@ const storeModule = {
     },
 };
 
-export default storeModule;
+export default storeModule{{MODULE_STUDLY}};

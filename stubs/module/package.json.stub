@@ -17,16 +17,16 @@
   "peerDependencies": {
     "@neopayment/nbo-core": "^1.0.0",
     "vue": "^3.5.0",
-    "vue-router": "^4.0.0",
-    "vuex": "^4.0.0",
-    "primevue": "^4.0.0"
+    "vue-router": "^4.5.0",
+    "vuex": "^4.1.0",
+    "primevue": "^4.3.0"
   },
   "devDependencies": {
     "@neopayment/nbo-core": "^1.0.0",
     "typescript": "^5.0.0",
     "vue": "^3.5.0",
-    "vue-router": "^4.0.0",
-    "vuex": "^4.0.0",
-    "primevue": "^4.0.0"
+    "vue-router": "^4.5.0",
+    "vuex": "^4.1.0",
+    "primevue": "^4.3.0"
   }
 }

@@ -1,22 +1,22 @@
-export type ModuleItem = {
+export type {{MODULE_STUDLY}}Item = {
     id: string | number;
     name?: string;
     [key: string]: unknown;
 };
 
-export type ModuleIndexResponse = {
+export type {{MODULE_STUDLY}}IndexResponse = {
     module: string;
-    items: ModuleItem[];
+    items: {{MODULE_STUDLY}}Item[];
 };
 
-export type ModuleShowResponse = {
+export type {{MODULE_STUDLY}}ShowResponse = {
     module: string;
-    item: ModuleItem;
+    item: {{MODULE_STUDLY}}Item;
 };
 
-export default class ModuleApi {
-    static async index(): Promise<ModuleIndexResponse> {
-        const response = await fetch('/api/nbo/{{MODULE_CODE}}', {
+export default class {{MODULE_STUDLY}}Api {
+    static async index(): Promise<{{MODULE_STUDLY}}IndexResponse> {
+        const response = await fetch('/api/{{MODULE_CODE}}', {
             headers: {
                 Accept: 'application/json',
             },
@@ -29,8 +29,8 @@ export default class ModuleApi {
         return response.json();
     }
 
-    static async show(id: string | number): Promise<ModuleShowResponse> {
-        const response = await fetch(`/api/nbo/{{MODULE_CODE}}/${id}`, {
+    static async show(id: string | number): Promise<{{MODULE_STUDLY}}ShowResponse> {
+        const response = await fetch(`/api/{{MODULE_CODE}}/${id}`, {
             headers: {
                 Accept: 'application/json',
             },

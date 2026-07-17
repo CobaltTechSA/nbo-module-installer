@@ -4,7 +4,7 @@ const routes = [
     {
         path: '{{MODULE_CODE}}',
         name: '{{MODULE_CODE}}.index',
-        component: () => import('./pages/Index.vue'),
+        component: () => import('./components/pages/Index.vue'),
         meta: {
             title: '{{MODULE_NAME}}',
             module: '{{MODULE_CODE}}',
@@ -14,7 +14,7 @@ const routes = [
     {
         path: '{{MODULE_CODE}}/create',
         name: '{{MODULE_CODE}}.create',
-        component: () => import('./pages/Create.vue'),
+        component: () => import('./components/pages/Create.vue'),
         meta: {
             title: 'Create {{MODULE_NAME}}',
             module: '{{MODULE_CODE}}',
@@ -24,7 +24,7 @@ const routes = [
     {
         path: '{{MODULE_CODE}}/:id',
         name: '{{MODULE_CODE}}.show',
-        component: () => import('./pages/Show.vue'),
+        component: () => import('./components/pages/Show.vue'),
         props: true,
         meta: {
             title: '{{MODULE_NAME}} Detail',
