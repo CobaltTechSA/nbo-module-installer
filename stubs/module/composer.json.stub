@@ -3,6 +3,12 @@
   "description": "{{MODULE_NAME}} module for NBO",
   "type": "library",
   "license": "proprietary",
+  "repositories": [
+    {
+        "type": "composer",
+        "url": "https://registry.cobalt.tech"
+    }
+  ]
   "require": {
     "php": "^8.3",
     "neopayment/nbo-core": "^1.0",
