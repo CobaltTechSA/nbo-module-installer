@@ -17,5 +17,11 @@
     "bin/nbo"
   ],
   "minimum-stability": "stable",
-  "prefer-stable": true
+  "prefer-stable": true,
+  "require-dev": {
+    "phpunit/phpunit": "^12.0"
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
 }

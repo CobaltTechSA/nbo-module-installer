@@ -25,6 +25,21 @@ It creates the basic backend and frontend scaffolding required for a module to i
 - Git
 - Access to the GitHub repository where the installer is hosted
 
+## Tests
+
+Install development dependencies and run the PHPUnit suite:
+
+```bash
+composer install
+composer test
+```
+
+The suite covers name conversions and module generation, including custom options,
+existing directories, forced overwrites, and disabling GitHub Actions. Generated
+test modules use temporary directories that are removed after each test.
+
+Run a specific test with `composer test -- --filter NewModuleCommandTest`.
+
 ## Installation
 
 ### Install globally from GitHub
