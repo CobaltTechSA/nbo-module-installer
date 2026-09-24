@@ -1,0 +1,93 @@
+name: PHP tests
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_call:
+    inputs:
+      php-version:
+        description: PHP version used by the test job.
+        required: false
+        type: string
+        default: '8.4'
+      composer-install-command:
+        description: Command used to install Composer dependencies.
+        required: false
+        type: string
+        default: composer install --no-interaction --prefer-dist --no-progress
+      test-command:
+        description: Command used to execute the project test suite.
+        required: false
+        type: string
+        default: composer test
+    secrets:
+      COMPOSER_AUTH_JSON:
+        description: Optional Composer authentication JSON for private registries.
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: php-tests-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    services:
+      redis:
+        image: redis:7-alpine
+        ports:
+          - 6379:6379
+
+    env:
+      COMPOSER_AUTH_JSON: ${{ secrets.COMPOSER_AUTH_JSON }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ inputs.php-version || vars.PHP_VERSION || '8.4' }}
+          extensions: dom, gnupg, http, intl, json, libxml, mbstring, simplexml, soap, sockets, sysvsem, zip, redis
+          coverage: none
+          tools: composer:v2
+
+      - name: Resolve Composer cache directory
+        id: composer-cache
+        shell: bash
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer downloads
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+      - name: Configure Composer authentication
+        if: env.COMPOSER_AUTH_JSON != ''
+        shell: bash
+        run: |
+          {
+              echo 'COMPOSER_AUTH<<EOF'
+              echo "$COMPOSER_AUTH_JSON"
+              echo 'EOF'
+          } >> "$GITHUB_ENV"
+
+      - name: Install dependencies
+        shell: bash
+        run: >-
+          ${{ inputs.composer-install-command || vars.COMPOSER_INSTALL_COMMAND ||
+          'composer install --no-interaction --prefer-dist --no-progress' }}
+
+      - name: Run tests
+        shell: bash
+        run: ${{ inputs.test-command || vars.TEST_COMMAND || 'composer test' }}
