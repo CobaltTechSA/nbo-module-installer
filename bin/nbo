@@ -8,6 +8,6 @@ use Neopayment\NboInstaller\Console\NewModuleCommand;
 
 $app = new Application('NBO Installer', '1.0.0');
 
-$app->add(new NewModuleCommand());
+$app->addCommand(new NewModuleCommand());
 
 $app->run();

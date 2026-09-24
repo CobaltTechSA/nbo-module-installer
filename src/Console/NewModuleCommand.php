@@ -26,11 +26,14 @@ class NewModuleCommand extends Command
             ->addOption('npm-scope', null, InputOption::VALUE_OPTIONAL, 'NPM scope', '@neopayment')
             ->addOption('namespace', null, InputOption::VALUE_OPTIONAL, 'PHP root namespace', 'NeoPayment')
             ->addOption('github-org', null, InputOption::VALUE_OPTIONAL, 'GitHub organization', 'CobaltTechSA')
+            ->addOption('no-github-actions', null, InputOption::VALUE_NONE, 'Disable GitHub Actions')
             ->addOption('force', null, InputOption::VALUE_NONE, 'Overwrite existing files');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
+        $output->writeln('');
+
         $filesystem = new Filesystem();
 
         $code = Str::kebab((string) $input->getArgument('code'));
@@ -93,6 +96,8 @@ class NewModuleCommand extends Command
         $this->copyStubDirectory($stubPath, $targetPath, $replacements, $filesystem);
 
         $this->renameGeneratedFiles($targetPath, $code, $snake, $studly, $serviceProviderClass, $seederClass, $filesystem);
+
+        $this->applyFileOptions($targetPath, $input, $output, $filesystem);
 
         $output->writeln('');
         $output->writeln('<info>NBO module created successfully.</info>');
@@ -174,6 +179,34 @@ class NewModuleCommand extends Command
             if ($filesystem->exists($from)) {
                 $filesystem->rename($from, $to, true);
             }
+        }
+    }
+
+    private function applyFileOptions( string $targetPath, InputInterface $input, OutputInterface $output, Filesystem $filesystem,)
+    {
+        if ($input->getOption('no-github-actions')) {
+            $filesystem->remove("{$targetPath}/.github");
+            $output->writeln('<comment>Github actions aren’t published!</comment>');
+        } else {
+            $output->writeln('<info>Github actions are present!</info>');
+            $output->writeln('<info>Please follow these steps to configure Github Actions on project repostory:</info>');
+            $output->writeln("");
+            $output->writeln('<comment>1. Create a new repository on Github.</comment>');
+            $output->writeln('<comment>2. In the new repository got to Settings > Secrets and variables > Actions</comment>');
+            $output->writeln('<comment>3. In the Repository secrets section, click on New repository secret</comment>');
+            $output->writeln('<comment>4. Fill the secret name and value as follow:</comment>');
+            $output->writeln('<comment>4.1. Name: COMPOSER_AUTH_JSON</comment>');
+            $output->writeln('<comment>4.2. Value: {
+  "http-basic": {
+    "YOUR_PRIVATE_REPOSITORY": {
+      "username": "YOUR_USERNAME",
+      "password": "YOUR_PASSWORD_OR_TOKEN"
+    }
+  }
+}
+</comment>');
+            $output->writeln('<comment>4.3. Replace "YOUR_PRIVATE_REPOSITORY" with your actual private repository name. Example: "https://my.repository.com".</comment>');
+            $output->writeln('<comment>4.4. Replace "YOUR_USERNAME" and "YOUR_PASSWORD_OR_TOKEN" with your actual credentials.</comment>');
         }
     }
 }
