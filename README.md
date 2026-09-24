@@ -14,7 +14,8 @@ It creates the basic backend and frontend scaffolding required for a module to i
 - Adds Vue Router routes.
 - Adds Vuex store module.
 - Adds basic Vue pages.
-- Adds Laravel routes, controller, config, migration and seeder stubs.
+- Adds Laravel routes, controller, config and seeder stubs.
+- Includes GitHub Actions workflows and a release script by default.
 - Prepares the module to be installed as a Composer dependency in an NBO host application.
 
 ## Requirements
@@ -125,15 +126,25 @@ nbo module:new customers \
 | `--npm-scope`       | NPM scope                                                   | `@neopayment`           |
 | `--namespace`       | PHP root namespace                                          | `NeoPayment`            |
 | `--github-org`      | GitHub organization name                                    | `CobaltTechSA`          |
+| `--no-github-actions` | Skip the generated `.github` workflows and scripts          | Disabled                |
 | `--force`           | Overwrite existing files                                    | Disabled                |
 
 ### Generated structure
 A generated module will have a structure similar to this:
+
+The `.github` directory is omitted when `--no-github-actions` is passed.
+
 ```
 nbo-customers/
 ├── composer.json
 ├── package.json
 ├── README.md
+├── nbo.ts
+├── vite.config.mts
+├── tsconfig.json
+├── .github/
+│   ├── workflows/
+│   └── scripts/
 ├── config/
 │   └── customers.php
 ├── src/
@@ -180,7 +191,7 @@ The generated composer.json includes:
   "license": "proprietary",
   "require": {
     "php": "^8.3",
-    "neopayment/nbo-core": "^1.0",
+    "neopayment/nbo-core": "@dev",
     "spatie/laravel-package-tools": "^1.93"
   },
   "autoload": {
@@ -215,14 +226,13 @@ The generated composer.json includes:
   "prefer-stable": true
 }
 ```
-The service provider registers:
+The service provider configures:
 
 - config 
 - views
 - web routes
 - api routes
-- migrations
-- package migrations auto-run support
+- package migration discovery and auto-run support; no migration file is included in the initial scaffold
 
 ### Generated frontend integration
 
@@ -264,7 +274,8 @@ The generated `package.json` includes:
 }
 ```
 
-The `register.ts` file is the frontend entrypoint for the module.
+The `register.ts` file is the frontend entrypoint for the module. Dependency ranges
+are taken from the generated template.
 
 It is automatically detected by the nbo-core Vite plugin and is responsible for registering:
 
@@ -305,7 +316,7 @@ git remote add origin git@github.com:CobaltTechSA/nbo-customers.git
 git push -u origin main
 ```
 
-The install the module:
+Install the module in the host application:
 ```bash
 composer require neopayment/nbo-customers:dev-main
 npm install
@@ -346,10 +357,12 @@ Use another path:
 ```bash
 nbo module:new customers --path=./alternative/path/nbo-customers
 ```
-Or overwrite existing files:
+Or overwrite generated files with `--force` (unrelated files in the directory are preserved):
 ```bash
-nbo module:new customers --force
+nbo module:new customers --path=./nbo-customers --force
 ```
+
+Pass `--no-github-actions` to omit the generated GitHub workflows and release script.
 
 ### Recommended workflow
 ```bash
