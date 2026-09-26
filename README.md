@@ -53,7 +53,7 @@ composer global config repositories.nbo-installer vcs git@github.com:CobaltTechS
 Then install it globally:
 
 ```bash
-composer global require neopayment/nbo-installer:dev-main
+composer global require neopayment/nbo-installer
 ```
 
 Make sure Composer’s global vendor/bin directory is in your PATH.
