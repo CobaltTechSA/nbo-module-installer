@@ -189,13 +189,15 @@ async function createOrUpdateRelease({github, context, tag, notes}) {
         }
     }
 
+    let releaseName = `Version ${tag}`;
+
     if (existingRelease) {
         await github.rest.repos.updateRelease({
             owner,
             repo,
             release_id: existingRelease.id,
             tag_name: tag,
-            name: tag,
+            name: releaseName,
             body: notes,
             draft: false,
             prerelease: false,
@@ -208,7 +210,7 @@ async function createOrUpdateRelease({github, context, tag, notes}) {
         owner,
         repo,
         tag_name: tag,
-        name: tag,
+        name: releaseName,
         body: notes,
         draft: false,
         prerelease: false,
