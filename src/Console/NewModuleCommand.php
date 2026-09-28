@@ -172,7 +172,8 @@ class NewModuleCommand extends Command
             "{$targetPath}/config/module.php" => "{$targetPath}/config/$code.php",
             "{$targetPath}/resources/css/module.css" => "{$targetPath}/resources/css/$code.css",
             "{$targetPath}/resources/ts/services/module-api.ts" => "{$targetPath}/resources/ts/services/$code-api.ts",
-            "{$targetPath}/resources/ts/components/ModuleBadge.vue" => "{$targetPath}/resources/ts/components/{$studly}Badge.vue"
+            "{$targetPath}/resources/ts/components/ModuleBadge.vue" => "{$targetPath}/resources/ts/components/{$studly}Badge.vue",
+            "{$targetPath}/.gitignore/" => "{$targetPath}/.gitignore"
         ];
 
         foreach ($renames as $from => $to) {

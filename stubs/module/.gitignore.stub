@@ -1,0 +1,32 @@
+/node_modules
+.DS_Store
+**/.DS_Store
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+/dev-laravel
+.env
+.env.backup
+.phpunit.result.cache
+.phpunit.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+public/mix-manifest.json
+
+#Project files
+.idea
+localfiles
+public/js/app
+public/css/app
+storage/debugbar
+
+# Assets de workbench
+/public/vendor/nbo-core
+/public/vendor/nbo-core/*
+/bootstrap/cache/packages.php
+/bootstrap/cache/services.php
+/workbench/storage
+
