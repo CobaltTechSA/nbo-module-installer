@@ -11,7 +11,10 @@
     "code": "{{MODULE_CODE}}",
     "name": "{{MODULE_NAME}}",
     "frontend": {
-      "register": "./register"
+      "register": "./register",
+      "sources": [
+        "resources/ts/**/*.{vue,ts}"
+      ]
     }
   },
   "peerDependencies": {

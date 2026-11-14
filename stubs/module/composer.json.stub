@@ -24,15 +24,13 @@
     "database/seeders"
   ],
   "extra": {
-    "laravel": {
-      "providers": [
-        "{{PHP_NAMESPACE_JSON}}\\Providers\\{{SERVICE_PROVIDER_CLASS}}"
-      ]
-    },
     "nbo-module": {
       "code": "{{MODULE_CODE}}",
       "name": "{{MODULE_NAME}}",
       "seeder": "{{PHP_NAMESPACE_JSON}}\\Database\\Seeders\\{{SEEDER_CLASS}}",
+      "providers": [
+        "{{PHP_NAMESPACE_JSON}}\\Providers\\{{SERVICE_PROVIDER_CLASS}}"
+      ],
       "vite": {
           "laravel": {
               "input": [
