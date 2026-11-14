@@ -41,7 +41,7 @@ final class NewModuleCommandTest extends TestCase
         self::assertSame('Customer Orders module for NBO', $composer['description']);
         self::assertSame('src/', $composer['autoload']['psr-4']['NeoPayment\\CustomerOrders\\']);
         self::assertSame('database/seeders/', $composer['autoload']['psr-4']['NeoPayment\\CustomerOrders\\Database\\Seeders\\']);
-        self::assertSame(['NeoPayment\\CustomerOrders\\Providers\\NboCustomerOrdersServiceProvider'], $composer['extra']['laravel']['providers']);
+        self::assertSame(['NeoPayment\\CustomerOrders\\Providers\\NboCustomerOrdersServiceProvider'], $composer['extra']['nbo-module']['providers']);
         self::assertSame('customer-orders', $composer['extra']['nbo-module']['code']);
         self::assertSame('Customer Orders', $composer['extra']['nbo-module']['name']);
         self::assertSame('NeoPayment\\CustomerOrders\\Database\\Seeders\\CustomerOrdersModuleSeeder', $composer['extra']['nbo-module']['seeder']);
