@@ -1,0 +1,19 @@
+name: Claude PR Review
+
+# Copy this file to .github/workflows/claude-review.yml in each repository.
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  id-token: write
+
+jobs:
+  claude:
+    uses: CobaltTechSA/ci-workflows/.github/workflows/claude-review.yml@main
+    with:
+      enforce: false
