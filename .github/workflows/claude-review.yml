@@ -15,5 +15,6 @@ permissions:
 jobs:
   claude:
     uses: CobaltTechSA/ci-workflows/.github/workflows/claude-review.yml@main
+    secrets: inherit   # CLAUDE_REVIEW_APP_PRIVATE_KEY, to choose the second reviewer
     with:
       enforce: false
