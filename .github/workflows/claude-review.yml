@@ -11,6 +11,7 @@ permissions:
   pull-requests: write
   issues: write
   id-token: write
+  actions: write
 
 jobs:
   claude:
@@ -18,3 +19,4 @@ jobs:
     secrets: inherit   # CLAUDE_REVIEW_APP_PRIVATE_KEY, to choose the second reviewer
     with:
       enforce: false
+      model: opus
